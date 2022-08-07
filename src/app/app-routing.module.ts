@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { OffersComponent } from './offers/offers.component';
-import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
+import { LoginComponent } from './components/login/login.component';
+import { OffersComponent } from './components/offers/offers.component';
+import { SubscriptionsComponent } from './components/subscriptions/subscriptions.component';
+import { AuthGuardService } from './core/guards/auth-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'offers', component: OffersComponent },
-  { path: 'subscriptions', component: SubscriptionsComponent },
+  { path: 'offers', component: OffersComponent, canActivate: [AuthGuardService] },
+  { path: 'subscriptions', component: SubscriptionsComponent, canActivate: [AuthGuardService] },
 ];
 
 @NgModule({

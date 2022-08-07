@@ -1,6 +1,10 @@
 # MelitaTask
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+This project use the next libraries:
+
+- PrimeNG https://www.primefaces.org/primeng/
+- Angular Material https://material.angular.io/
 
 ## Development server
 
