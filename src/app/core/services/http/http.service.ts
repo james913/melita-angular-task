@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppConstant } from 'src/app/shared/constants';
+import { Login } from '../../models/login-model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,19 +10,15 @@ import { AppConstant } from 'src/app/shared/constants';
 export class HttpService {
 
   private readonly endPoint = AppConstant.API_ENDPOINT;
+
   constructor(private http: HttpClient) { }
 
-
-  loginUser(): Observable<any> {
+  login(data: Login): Observable<any> {
     const url = `${this.endPoint}/login`;
-    const data = {
-      "username": "user",
-      "password": "password"
-    }
     return this.http.post(url, data);
   }
 
-  logoutUser(): Observable<any> {
+  logout(): Observable<any> {
     const url = `${this.endPoint}/logout`;
     return this.http.get('');
   }
@@ -31,7 +28,7 @@ export class HttpService {
     return this.http.get(url);
   }
 
-  getSubscription(offerId: string): Observable<any> {
+  getSubscription(offerId: number): Observable<any> {
     const url = `${this.endPoint}/offers/${offerId}/subscriptions`;
     return this.http.get(url);
   }

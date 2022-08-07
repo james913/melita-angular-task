@@ -1,1 +1,38 @@
-<p>login</p>
+<div>
+  <h2>MELITA</h2>
+  <form [formGroup]="loginForm" action="" (submit)="getToken()">
+    <!-- User Input -->
+    <mat-form-field appearance="outline">
+      <mat-label>User Name</mat-label>
+      <input [formControlName]="'user'" matInput placeholder="Ex. Melita123" />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint *ngIf="loginForm.controls['user'].errors">{{
+        showError("user")
+      }}</mat-hint>
+    </mat-form-field>
+
+    <!-- Password Input -->
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        [formControlName]="'password'"
+        matInput
+        placeholder="Ex. MLTA001"
+      />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint *ngIf="loginForm.controls['password'].errors">{{
+        showError("password")
+      }}</mat-hint>
+    </mat-form-field>
+
+    <!-- Button Submit -->
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!loginForm.valid"
+    >
+      Submit
+    </button>
+  </form>
+</div>
