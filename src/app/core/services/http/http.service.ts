@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppConstant } from 'src/app/shared/constants';
-import { Login } from '../../models/login-model';
+import { LoginModel } from '../../models/login-model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  login(data: Login): Observable<any> {
+  login(data: LoginModel): Observable<any> {
     const url = `${this.endPoint}/login`;
     return this.http.post(url, data);
   }

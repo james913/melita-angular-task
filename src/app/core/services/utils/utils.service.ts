@@ -1,17 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Login } from '../../models/login-model';
+import { LoginModel } from '../../models/login-model';
 import { HttpService } from '../http/http.service';
+import { Store } from '@ngrx/store';
+import { authTokenSuccess, loadingInit, offersSuccess } from '../../state/actions/actions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
 
-  constructor(private httpService: HttpService) { }
+  constructor(
+    private httpService: HttpService,
+    private store: Store
+  ) { }
 
-  login(data: Login): void {
+  login(data: LoginModel): void {
+    this.store.dispatch(loadingInit());
     this.httpService.login(data).subscribe(res => {
-      localStorage.setItem('authToken', res.authToken);
+      this.store.dispatch(authTokenSuccess({ authToken: res.authToken }));
     });
   }
 
@@ -22,8 +28,9 @@ export class UtilsService {
   }
 
   getOffers(): void {
+    this.store.dispatch(loadingInit());
     this.httpService.getOffers().subscribe(res => {
-      console.log(res);
+      this.store.dispatch(offersSuccess({ offers: res.offers }));
     });
   }
 

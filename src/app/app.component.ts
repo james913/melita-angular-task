@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { HttpService } from './core/services/http/http.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,7 +7,5 @@ import { HttpService } from './core/services/http/http.service';
 export class AppComponent {
   title = 'melita-task';
 
-  constructor() {
-  }
-
+  constructor() { }
 }

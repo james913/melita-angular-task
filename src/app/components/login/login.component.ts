@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilsService } from 'src/app/core/services/utils/utils.service';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,9 +12,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private utilsService: UtilsService) {
+    private utilsService: UtilsService,
+  ) {
     this._initForm();
-    console.log(this.loginForm)
   }
 
   ngOnInit(): void {
