@@ -1,7 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { OfferModel } from '../../models/offers-model';
 import { OffersState } from '../../models/offers.state';
-import { loadingInit, authTokenSuccess, offersSuccess } from '../actions/actions';
+import { SubscriptionModel } from '../../models/subscription-model';
+import { loadingInit, authTokenSuccess, offersSuccess, subscriptionSuccess, logoutSuccess } from '../actions/actions';
 
 export const offersInitialState: OffersState = {
   authToken: null,
@@ -22,7 +23,13 @@ export const offersReducer = createReducer(
   }),
   on(offersSuccess, (state, action) => {
     const offers: OfferModel[] = action.offers;
-    console.log(offers)
     return { ...state, loading: false, offers: offers }
+  }),
+  on(subscriptionSuccess, (state, action) => {
+    const subscriptions: SubscriptionModel[] = action.subscriptions;
+    return { ...state, loading: false, subscriptions: state.subscriptions.concat(subscriptions) }
+  }),
+  on(logoutSuccess, (state) => {
+    return { ...state, loading: false, isLogin: false, authToken: null }
   })
 ); 

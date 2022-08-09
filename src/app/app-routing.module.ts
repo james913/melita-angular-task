@@ -4,10 +4,11 @@ import { LoginComponent } from './components/login/login.component';
 import { OffersComponent } from './components/offers/offers.component';
 import { SubscriptionsComponent } from './components/subscriptions/subscriptions.component';
 import { AuthGuardService } from './core/guards/auth-guard.service';
+import { LoginGuardService } from './core/guards/login-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuardService] },
   { path: 'offers', component: OffersComponent, canActivate: [AuthGuardService] },
   { path: 'subscriptions', component: SubscriptionsComponent, canActivate: [AuthGuardService] },
 ];

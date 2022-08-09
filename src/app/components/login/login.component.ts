@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { UtilsService } from 'src/app/core/services/utils/utils.service';
+import { Store } from '@ngrx/store';
+import { selectLoading } from 'src/app/core/state/selectors/selector';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,16 +11,21 @@ import { UtilsService } from 'src/app/core/services/utils/utils.service';
 })
 export class LoginComponent implements OnInit {
 
+  private loading$: Observable<boolean> = new Observable();
+  loading = false;
   loginForm!: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private utilsService: UtilsService,
+    private store: Store<any>,
   ) {
     this._initForm();
   }
 
   ngOnInit(): void {
+    this.loading$ = this.store.select(selectLoading);
+    this.loading$.subscribe(loading => this.loading = loading);
   }
 
   showError(id: string): string {

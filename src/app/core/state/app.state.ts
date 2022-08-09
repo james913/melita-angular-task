@@ -4,9 +4,9 @@ import { offersReducer } from "./reducers/reducers";
 
 //Define the diferents store inside of the application
 export interface AppState {
-  offers: OffersState
+  offersData: OffersState
 }
 
 export const ROOT_REDUCERS: ActionReducerMap<AppState> = {
-  offers: offersReducer
+  offersData: offersReducer
 }

@@ -2,6 +2,8 @@ export interface SubscriptionModel {
   id: number;
   name: string;
   type: Subscription;
+  offerId: number;
+  usage?: UsageModel[];
 }
 
 export enum Subscription {
@@ -9,4 +11,10 @@ export enum Subscription {
   TELEPHONY = "TELEPHONY",
   MOBILE = 'MOBILE',
   TELEVISION = 'TELEVISION'
+}
+
+interface UsageModel {
+  type: string,
+  used: number,
+  limit: number
 }

@@ -3,7 +3,7 @@ import { OffersState } from '../../models/offers.state';
 import { AppState } from '../app.state';
 
 
-export const selectOffersFeature = (state: AppState) => state.offers;
+export const selectOffersFeature = (state: AppState) => state.offersData;
 
 export const selectLoading = createSelector(
   selectOffersFeature,
@@ -12,6 +12,10 @@ export const selectLoading = createSelector(
 export const selectIsLogin = createSelector(
   selectOffersFeature,
   (state: OffersState) => state.isLogin
+);
+export const selectOffers = createSelector(
+  selectOffersFeature,
+  (state: OffersState) => state.offers
 );
 export const selectSubscriptions = createSelector(
   selectOffersFeature,

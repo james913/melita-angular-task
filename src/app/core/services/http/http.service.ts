@@ -20,7 +20,7 @@ export class HttpService {
 
   logout(): Observable<any> {
     const url = `${this.endPoint}/logout`;
-    return this.http.get('');
+    return this.http.get(url);
   }
 
   getOffers(): Observable<any> {
