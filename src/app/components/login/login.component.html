@@ -1,38 +1,61 @@
-<div>
-  <h2>MELITA</h2>
-  <form [formGroup]="loginForm" action="" (submit)="getToken()">
-    <!-- User Input -->
-    <mat-form-field appearance="outline">
-      <mat-label>User Name</mat-label>
-      <input [formControlName]="'user'" matInput placeholder="Ex. Melita123" />
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      <mat-hint *ngIf="loginForm.controls['user'].errors">{{
-        showError("user")
-      }}</mat-hint>
-    </mat-form-field>
+<div class="login-page">
+  <header class="login-header text-center">
+    <h1 class="melita-title">MELITA</h1>
+  </header>
 
-    <!-- Password Input -->
-    <mat-form-field appearance="outline">
-      <mat-label>Password</mat-label>
-      <input
-        [formControlName]="'password'"
-        matInput
-        placeholder="Ex. MLTA001"
-      />
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      <mat-hint *ngIf="loginForm.controls['password'].errors">{{
-        showError("password")
-      }}</mat-hint>
-    </mat-form-field>
-
-    <!-- Button Submit -->
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      [disabled]="!loginForm.valid"
+  <div class="login-form text-center" *ngIf="!loading">
+    <form
+      class="melita-login-form"
+      [formGroup]="loginForm"
+      action=""
+      (submit)="getToken()"
     >
-      Submit
-    </button>
-  </form>
+      <mat-form-field
+        class="form-field melita-full-width mt-2 mb-1"
+        appearance="fill"
+      >
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" [formControlName]="'user'" />
+        <mat-hint *ngIf="loginForm.controls['user'].errors">{{
+          showError("user")
+        }}</mat-hint>
+      </mat-form-field>
+
+      <br />
+
+      <mat-form-field
+        class="form-field melita-full-width mt-1 mb-2"
+        appearance="fill"
+      >
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" [formControlName]="'password'" />
+        <mat-hint *ngIf="loginForm.controls['password'].errors">{{
+          showError("password")
+        }}</mat-hint>
+      </mat-form-field>
+
+      <div>
+        <!-- Button Submit -->
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!loginForm.valid"
+        >
+          Submit
+        </button>
+      </div>
+      <div class="login-check row">
+        <div class="remember-me col">
+          <mat-checkbox class="checkbox">Remember me</mat-checkbox>
+        </div>
+        <div class="forgot-password col">
+          <p>Forgotten passwrord?</p>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="text-center">
+    <h1 *ngIf="loading">Loading data...</h1>
+  </div>
 </div>

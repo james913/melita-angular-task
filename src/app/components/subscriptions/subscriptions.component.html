@@ -1,1 +1,40 @@
-<p>subscriptions works!</p>
+<div>
+  <h1 class="subscription-title fw-bold">Select a Subscription</h1>
+  <hr class="mb-5" />
+
+  <mat-accordion>
+    <mat-expansion-panel
+      class="subscription-toggle mb-4"
+      *ngFor="let subData of selectSubscriptions(); let i = index"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <strong>{{ i + 1 }}. {{ subData.type }}</strong>
+        </mat-panel-title>
+        <mat-panel-description>
+          Subscription type: {{ subData.name }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="subscription-details" *ngIf="subData.usage">
+        <p>Data usage <span class="fst-italic">(if applicable):</span></p>
+        <ul>
+          <li *ngFor="let usage of subData.usage; let p = index">
+            <p *ngIf="usage; else elseBlock">
+              {{ usage.type }} used: {{ usage.used }} of
+              {{ usage.limit }}
+            </p>
+            <ng-template #elseBlock>
+              <p class="fst-italic">Not available</p>
+            </ng-template>
+          </li>
+        </ul>
+        <button mat-raised-button color="accent">Select</button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <div class="text-end">
+    <button mat-button mat-dialog-close>Exit</button>
+  </div>
+</div>

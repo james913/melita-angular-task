@@ -7,7 +7,7 @@ import { selectIsLogin } from '../state/selectors/selector';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate {
+export class LoginGuardService implements CanActivate {
 
   isLogin$: Observable<boolean> = new Observable();
 
@@ -16,6 +16,8 @@ export class AuthGuardService implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    return this.store.select(selectIsLogin);
+    let active = false;
+    this.store.select(selectIsLogin).subscribe(r => active = r);
+    return !active;
   }
 }

@@ -5,6 +5,8 @@ This project use the next libraries:
 
 - PrimeNG https://www.primefaces.org/primeng/
 - Angular Material https://material.angular.io/
+- NgRx https://ngrx.io/docs
+- Bootstrap 5 https://getbootstrap.com/docs/5.2/getting-started/introduction/
 
 ## Development server
 
